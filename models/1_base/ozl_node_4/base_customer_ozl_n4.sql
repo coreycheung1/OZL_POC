@@ -2,7 +2,7 @@ with customer as (
 
     select
         customer_id,
-        account_id,
+        concat(account_id, '_', database) as account_id,
         firstname,
         lastname,
         dob,
@@ -13,9 +13,9 @@ with customer as (
         country,
         phone,
         email,
-        customer_timestamp as signup_timestamp,
+        convert_timezone('UTC', 'Australia/Brisbane', customer_timestamp) as signup_timestamp,
         database as source
-    from {{ source('ozl_node_3', 'customer') }}       
+    from {{ source('ozl_node_4', 'customer') }}       
 )
 
 select * 

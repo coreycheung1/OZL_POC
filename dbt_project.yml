@@ -35,6 +35,9 @@ models:
   ozl_poc:
     marts:
       core:
-          +materialized: table
+        +materialized: table
     staging:
-        +materialized: view
+      +materialized: view
+    base:
+      +materialized: view
+      
