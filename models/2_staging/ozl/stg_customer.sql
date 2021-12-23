@@ -17,8 +17,8 @@ unioned as (
     union all
     select *
     from customer_ozl_n3
-
 )
 
 select *
 from unioned
+
