@@ -1,28 +1,23 @@
 with n3 as (
 
-    select *
-    from {{ ref('base_account_transaction_ozl_n3') }} 
+    select * from {{ ref('base_account_transaction_ozl_n3') }} 
 ),
 
 n4 as (
 
-    select *
-    from {{ ref('base_account_transaction_ozl_n4') }}
+    select * from {{ ref('base_account_transaction_ozl_n4') }}
 ),
 
 account_transaction_unioned as (
 
-    select *
-    from n3
+    select * from n3
     union all
-    select *
-    from n4
+    select * from n4
 ),
 
 account_transaction_type as (
 
-    select *
-    from {{ ref('stg_account_transaction_type') }}
+    select * from {{ ref('stg_account_transaction_type') }}
 ),
 
 final as (

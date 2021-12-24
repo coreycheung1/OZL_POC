@@ -1,13 +1,11 @@
 with n3 as (
     
-    select *
-    from {{ ref('base_checkout_ozl_n3') }}
+    select * from {{ ref('base_checkout_ozl_n3') }}
 ),
 
 n4 as (
     
-    select *
-    from {{ ref('base_checkout_ozl_n4') }}
+    select * from {{ ref('base_checkout_ozl_n4') }}
 ),
 
 checkout_unioned as (
