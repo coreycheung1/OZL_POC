@@ -1,24 +1,40 @@
-with customer_ozl_n4 as (
+with n3 as (
 
-    select *
-    from {{ ref('base_customer_ozl_n4') }} 
+    select * from {{ ref('base_customer_ozl_n3') }}
 ),
 
-customer_ozl_n3 as (
+n4 as (
 
-    select *
-    from {{ ref('base_customer_ozl_n3') }}
+    select * from {{ ref('base_customer_ozl_n4') }}
 ),
 
-unioned as (
+customer_unioned as (
 
-    select *
-    from customer_ozl_n4
+    select * from n3
     union all
-    select *
-    from customer_ozl_n3
+    select * from n4
+),
+
+final as (
+
+    select
+        customer_id,
+        account_id,
+        firstname,
+        lastname,
+        dob,
+        address,
+        suburb,
+        postcode,
+        state,
+        country,
+        phone,
+        email,
+        signup_timestamp,
+        source
+    from customer_unioned
 )
 
 select *
-from unioned
+from final
 
