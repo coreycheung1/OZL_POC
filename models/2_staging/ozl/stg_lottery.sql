@@ -12,5 +12,4 @@ with lottery as (
     from {{ source('ozl_node_3', 'lottery') }}
 )
 
-select * 
-from lottery
+select * from lottery
