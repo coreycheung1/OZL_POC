@@ -20,14 +20,14 @@ syndicate_share_status as (
     select * from {{ ref('stg_syndicate_share_status') }}
 ),
 
-draw as (
+recurring_syndicate_share as (
 
-    select * from {{ ref('stg_draw') }}
+    select * from {{ ref('stg_recurring_syndicate_share') }}
 ),
 
-lottery as (
+checkout as (
 
-    select * from {{ ref('stg_lottery') }}
+    select * from {{ ref('stg_checkout') }}
 ),
 
 final as (
@@ -42,14 +42,15 @@ final as (
         syndicate_share_unioned.checkout_id,
         syndicate_share_status.syndicate_share_status_name,
         syndicate_share_unioned.syndicate_id,
-        lottery.lottery_name,
-        draw.draw_no,
-        draw.draw_date,
-        draw.draw_prize_pool
+        syndicate_share_unioned.draw_id,
+        recurring_syndicate_share.recurring_purchase_id,
+        checkout.channel,
+        checkout.checkout_sale_data,
+        syndicate_share_unioned.source
     from syndicate_share_unioned
     left join syndicate_share_status on syndicate_share_unioned.syndicate_share_status_id = syndicate_share_status.syndicate_share_status_id
-    left join draw on syndicate_share_unioned.draw_id = draw.draw_id
-    left join lottery on draw.lottery_id = lottery.lottery_id
+    left join recurring_syndicate_share on syndicate_share_unioned.syndicate_share_id = recurring_syndicate_share.syndicate_share_id
+    left join checkout on syndicate_share_unioned.checkout_id = checkout.checkout_id
 )
 
 select * from final
