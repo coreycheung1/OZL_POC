@@ -1,4 +1,4 @@
-with draw as (
+with final as (
     
     select 
         draw_id,
@@ -14,4 +14,4 @@ with draw as (
 )
 
 select *
-from draw
+from final
