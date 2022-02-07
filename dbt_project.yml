@@ -33,11 +33,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   ozl_poc:
-    marts:
+    3_marts:
       core:
         +materialized: table
-    staging:
+    2_staging:
       +materialized: view
-    base:
+    1_base:
       +materialized: view
       
