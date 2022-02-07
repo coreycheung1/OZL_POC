@@ -101,6 +101,7 @@ final as (
   join draw on sales_unioned.draw_id = draw.draw_id
   join lottery on draw.lottery_id = lottery.lottery_id
   left join game_offer on sales_unioned.game_offer_id = game_offer.game_offer_id
+  where not (lottery_type_name = 'multi_draw_lotto' and TTV = 0)
 )
 
 select *
