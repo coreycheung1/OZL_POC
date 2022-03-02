@@ -7,7 +7,7 @@ with first_checkout as (
         lottery_type_name as first_lottery_type,
         channel as first_channel,
         draw_prize_pool as first_prize_pool,
-        row_number() over (partition by customer_id order by sale_timestamp asc, ttv desc) ords -- orders sales
+        row_number() over (partition by customer_id order by sale_timestamp asc, ttv desc) as ords -- orders sales
     from {{ ref('ozl_fct_sales') }}
     qualify ords = 1 -- first sale
 ),
