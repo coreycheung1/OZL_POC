@@ -9,7 +9,10 @@
   {%- endfor -%}
 
   {%- for source in sources %} {# loop through list of relation objects and union #}
-    select * from {{ source }}
+    select 
+      '{{ source.schema }}' database, 
+      * 
+    from {{ source }}
 
     {%- if not loop.last %} {# no union statement after last source #}
     union all
