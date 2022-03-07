@@ -1,6 +1,6 @@
 {# Macro to union nodes. Inputs: pbj instance, number of nodes, table name. #}
 
-{%- macro union_nodes(pbj, num_nodes, table) -%}
+{%- macro union_node_sources(pbj, num_nodes, table) -%}
 
   {%- set sources = [] -%} {# initialise source list #}
 
