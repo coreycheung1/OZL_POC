@@ -12,11 +12,12 @@ final as (
 
     select
         atu.source,
-        atu.account_transaction_id,
-        atu.account_transaction_timestamp,
-        atu.account_id,
-        atu.transaction_reason,
+        concat(atu.account_transaction_id, '_', source) as account_transaction_id,
+        convert_timezone('UTC', 'Australia/Brisbane', atu.account_transaction_timestamp) as account_transaction_timestamp,
+        concat(atu.account_id, '_', database) as account_id,
+        try_parse_json(atu.transaction_reason) as transaction_reason,
         atu.transaction_amount,
+        atu.account_transaction_type_id,
         att.account_transaction_type_name as account_transaction_type
     from account_transaction_unioned atu
     join account_transaction_type att on atu.account_transaction_type_id = att.account_transaction_type_id
