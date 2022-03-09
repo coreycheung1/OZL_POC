@@ -10,7 +10,7 @@
 
   {%- for source in sources %} {# loop through list of relation objects and union #}
     select 
-      '{{ source.schema }}' database, {# new field that gets the db schema from the relations class #}
+      '{{ source.schema }}' source, {# new field that gets the db schema from the relations class #}
       * 
     from {{ source }}
 
