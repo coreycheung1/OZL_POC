@@ -5,7 +5,7 @@ with account_transaction_unioned as (
 
 account_transaction_type as (
 
-    select * from {{ ref('stg_account_transaction_type') }}
+    select * from {{ ref('stg_account_transaction_type_ozl') }}
 ),
 
 final as (
