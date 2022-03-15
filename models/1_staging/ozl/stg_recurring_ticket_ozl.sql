@@ -7,9 +7,9 @@ recurring_ticket_cleaned as (
 
     select
         source,
-        concat(ticket_id, '_', source) as ticket_id,
+        ticket_id,
         concat(recurring_purchase_id, '_', source) as recurring_purchase_id
-    from recurring_ticket_unioned 
+    from recurring_t 
 ),
 
 final as (

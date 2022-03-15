@@ -53,9 +53,9 @@ final as (
         c.channel,
         c.checkout_sale_data
     from syndicate_share_cleaned ss
-    join checkout c on ss.checkout_id = c.checkout_id
-    join recurring_syndicate_share rss on ss.syndicate_share_id = rss.syndicate_share_id
-    join syndicate_share_status status on ss.syndicate_share_status_id = status.syndicate_share_status_id 
+    left join checkout c on ss.checkout_id = c.checkout_id
+    left join recurring_syndicate_share rss on ss.syndicate_share_id = rss.syndicate_share_id
+    left join syndicate_share_status status on ss.syndicate_share_status_id = status.syndicate_share_status_id 
 )
 
 select *
