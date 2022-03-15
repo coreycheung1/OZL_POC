@@ -9,7 +9,7 @@ recurring_ticket_cleaned as (
         source,
         ticket_id,
         concat(recurring_purchase_id, '_', source) as recurring_purchase_id
-    from recurring_t 
+    from recurring_ticket_unioned 
 ),
 
 final as (
