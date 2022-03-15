@@ -9,7 +9,7 @@ account_transaction_cleaned as (
         source,
         concat(account_transaction_id, '_', source) as account_transaction_id,
         convert_timezone('UTC', 'Australia/Brisbane', account_transaction_timestamp) as account_transaction_timestamp,
-        concat(account_id, '_', database) as account_id,
+        concat(account_id, '_', source) as account_id,
         try_parse_json(transaction_reason) as transaction_reason,
         transaction_amount,
         account_transaction_type_id

@@ -6,7 +6,7 @@ with checkout_unioned as (
 checkout_cleaned as (
     select
         source,
-        concat(checkout_id, '_', database) as checkout_id,
+        concat(checkout_id, '_', source) as checkout_id,
         convert_timezone('UTC', 'Australia/Brisbane', checkout_timestamp) as checkout_timestamp,
         customer_id,
         channel_id,

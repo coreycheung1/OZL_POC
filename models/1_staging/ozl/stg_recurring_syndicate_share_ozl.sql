@@ -1,15 +1,24 @@
-with unioned_recurring_syndicate_share as (
+with recurring_syndicate_share_unioned as (
 
     {{ union_node_sources('ozl', 4, 'recurring_syndicate_share') }}
+),
+
+recurring_syndicate_share_cleaned as (
+
+     select
+        source,
+        concat(syndicate_share_id, '_', source) as syndicate_share_id,
+        concat(recurring_purchase_id, '_', source) as recurring_purchase_id
+    from recurring_syndicate_share_unioned
 ),
 
 final as (
 
     select
         source,
-        concat(syndicate_share_id, '_', database) as syndicate_share_id,
-        concat(recurring_purchase_id, '_', database) as recurring_purchase_id
-    from unioned_recurring_syndicate_share
+        syndicate_share_id,
+        recurring_purchase_id
+    from recurring_syndicate_share_cleaned
 )
 
 select * 

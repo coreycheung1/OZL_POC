@@ -8,7 +8,7 @@ customer_cleaned as (
     select
         source,
         customer_id,
-        concat(account_id, '_', database) as account_id,
+        concat(account_id, '_', source) as account_id,
         firstname,
         lastname,
         dob,

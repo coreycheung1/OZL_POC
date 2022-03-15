@@ -1,15 +1,24 @@
-with unioned_recurring_ticket as (
+with recurring_ticket_unioned as (
 
     {{ union_node_sources('ozl', 4, 'recurring_ticket') }}
+),
+
+recurring_ticket_cleaned as (
+
+    select
+        source,
+        concat(ticket_id, '_', source) as ticket_id,
+        concat(recurring_purchase_id, '_', source) as recurring_purchase_id
+    from recurring_ticket_unioned 
 ),
 
 final as (
 
     select
         source,
-        concat(ticket_id, '_', database) as ticket_id,
-        concat(recurring_purchase_id, '_', database) as recurring_purchase_id
-    from unioned_recurring_ticket 
+        ticket_id,
+        recurring_purchase_id
+    from recurring_ticket_cleaned 
 )
 
 select *
