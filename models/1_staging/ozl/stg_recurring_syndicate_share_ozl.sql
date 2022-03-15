@@ -7,7 +7,7 @@ recurring_syndicate_share_cleaned as (
 
      select
         source,
-        concat(syndicate_share_id, '_', source) as syndicate_share_id,
+        syndicate_share_id,
         concat(recurring_purchase_id, '_', source) as recurring_purchase_id
     from recurring_syndicate_share_unioned
 ),
