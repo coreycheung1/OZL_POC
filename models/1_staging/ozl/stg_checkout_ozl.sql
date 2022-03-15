@@ -1,6 +1,17 @@
-with unioned_checkout as (
+with checkout_unioned as (
 
     {{ union_node_sources('ozl', 4, 'checkout')}}
+),
+
+checkout_cleaned as (
+    select
+        source,
+        concat(checkout_id, '_', database) as checkout_id,
+        convert_timezone('UTC', 'Australia/Brisbane', checkout_timestamp) as checkout_timestamp,
+        customer_id,
+        channel_id,
+        checkout_sale_data
+    from checkout_unioned
 ),
 
 channel as (
@@ -17,7 +28,7 @@ final as (
         c.customer_id,
         ch.channel_name as channel,
         c.checkout_sale_data       
-    from unioned_checkout c 
+    from checkout_cleaned c 
     join channel ch on c.channel_id = ch.channel_id
 )
 
