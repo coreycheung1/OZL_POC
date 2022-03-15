@@ -1,14 +1,14 @@
-with unioned_customer as (
+with customer_unioned as (
 
     {{ union_node_sources('ozl', 4, 'customer')}}
 ),
 
-final as (
+customer_cleaned as (
 
     select
         source,
         customer_id,
-        concat(account_id, '_', source) as account_id,
+        concat(account_id, '_', database) as account_id,
         firstname,
         lastname,
         dob,
@@ -20,7 +20,27 @@ final as (
         phone,
         email,
         convert_timezone('UTC', 'Australia/Brisbane', customer_timestamp) as signup_timestamp
-    from unioned_customer
+    from customer_unioned
+),
+
+final as (
+
+    select
+        source,
+        customer_id,
+        account_id,
+        firstname,
+        lastname,
+        dob,
+        address,
+        suburb,
+        postcode,
+        state,
+        country,
+        phone,
+        email,
+        signup_timestamp
+    from customer_cleaned
 )
 
 select * 
