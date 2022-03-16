@@ -34,10 +34,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   ozl_poc:
     3_marts:
-      core:
-        +materialized: table
-    2_staging:
+      +materialized: table
+    2_core:
       +materialized: view
-    1_base:
+    1_staging:
       +materialized: view
       
