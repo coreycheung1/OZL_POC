@@ -49,27 +49,34 @@ sales_unioned as (
     select * from syndicate_share
 ),
 
+account_transaction as (
+
+    select * from {{ ref('stg_account_transaction_ozl') }}
+),
+
 final as (
 
     select 
-        md5(coalesce(ticket_id, syndicate_share_id)) as sale_id,
-        source,
-        sale_timestamp,
-        customer_id,
-        checkout_id,
-        ticket_id,
-        syndicate_share_id,
-        account_transaction_id,
-        draw_id,
-        game_offer_id,
-        status,
-        recurring_purchase_id,
-        channel,
-        checkout_sale_data,
-        syndicate_session_id,
-        syndicate_id,
-        syndicate_share_count
-    from sales_unioned
+        md5(coalesce(s.ticket_id, s.syndicate_share_id)) as sale_id,
+        s.source,
+        s.sale_timestamp,
+        s.customer_id,
+        s.checkout_id,
+        s.ticket_id,
+        s.syndicate_share_id,
+        s.account_transaction_id,
+        at.transaction_amount as TTV,
+        s.draw_id,
+        s.game_offer_id,
+        s.status,
+        s.recurring_purchase_id,
+        s.channel,
+        s.checkout_sale_data,
+        s.syndicate_session_id,
+        s.syndicate_id,
+        s.syndicate_share_count
+    from sales_unioned s
+    left join account_transaction at on at.account_transaction_id = s.account_transaction_id
 )
 
 select * 
