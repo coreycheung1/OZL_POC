@@ -10,7 +10,7 @@ with first_sale as (
         channel as first_channel,
         checkout_sale_data as first_checkout_sale_data,
         row_number() over (partition by customer_id order by sale_timestamp asc, TTV desc) ords 
-    from {{ ref('fct_sales_ozl') }}
+    from {{ ref('fct_sale_ozl') }}
     where status in ('SYNDICATE_SHARE_PURCHASED', 'SYNDICATE_SHARE_PAID', 'TICKET_PURCHASED', 'TICKET_PAID')
     qualify ords = 1
 )

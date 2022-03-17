@@ -1,7 +1,7 @@
 with sales as (
 
     select *
-    from {{ ref('fct_sales_ozl') }}
+    from {{ ref('fct_sale_ozl') }}
     where status in ('SYNDICATE_SHARE_PURCHASED', 'SYNDICATE_SHARE_PAID', 'TICKET_PURCHASED', 'TICKET_PAID')
 ),
 
