@@ -13,7 +13,21 @@ with first_sale as (
     from {{ ref('fct_sale_ozl') }}
     where status in ('SYNDICATE_SHARE_PURCHASED', 'SYNDICATE_SHARE_PAID', 'TICKET_PURCHASED', 'TICKET_PAID')
     qualify ords = 1
+),
+
+final as (
+
+    select 
+        customer_id,
+        first_sale_id,
+        first_sale_timestamp,
+        first_checkout_id,
+        first_draw_id,
+        first_game_offer_id,
+        first_channel,
+        first_checkout_sale_data
+    from first_sale
 )
 
 select * 
-from first_sale
+from final
