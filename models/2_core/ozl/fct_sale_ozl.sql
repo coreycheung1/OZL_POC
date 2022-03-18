@@ -57,8 +57,8 @@ account_transaction as (
 final as (
 
     select 
-        md5(coalesce(s.ticket_id, s.syndicate_share_id)) as sale_id,
         s.source,
+        md5(coalesce(s.ticket_id, s.syndicate_share_id)) as sale_id,
         s.sale_timestamp,
         s.customer_id,
         s.checkout_id,

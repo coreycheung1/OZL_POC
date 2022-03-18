@@ -1,6 +1,7 @@
 with first_sale as (
 
     select 
+        source,
         customer_id,
         sale_id as first_sale_id,
         sale_timestamp as first_sale_timestamp,
@@ -18,6 +19,7 @@ with first_sale as (
 final as (
 
     select 
+        source,
         customer_id,
         first_sale_id,
         first_sale_timestamp,
