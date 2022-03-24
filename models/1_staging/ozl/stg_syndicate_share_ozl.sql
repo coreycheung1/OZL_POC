@@ -46,7 +46,7 @@ final as (
         ss.syndicate_share_count,
         ss.account_transaction_id,
         ss.checkout_id,
-        status.syndicate_share_status_name,
+        status.syndicate_share_status,
         ss.syndicate_id,
         ss.draw_id,
         rss.recurring_purchase_id,

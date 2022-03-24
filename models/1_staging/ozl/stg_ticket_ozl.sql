@@ -41,7 +41,7 @@ final as (
         t.game_offer_id,
         t.draw_id,
         t.account_transaction_id,
-        ts.ticket_status_name,
+        ts.ticket_status,
         t.checkout_id,
         rt.recurring_purchase_id,
         c.customer_id,
