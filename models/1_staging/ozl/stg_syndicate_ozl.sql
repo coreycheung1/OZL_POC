@@ -8,7 +8,7 @@ with syndicate as (
         syndicate_desc,
         syndicate_size,
         syndicate_type_id,
-        syndicate_type,
+        syndicate_type_name as syndicate_type,
         syndicate_cost_per_share
     from {{ source('ozl_node_3', 'syndicate') }}
 )
