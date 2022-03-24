@@ -32,11 +32,11 @@ final as (
         fs.first_sale_id,
         fs.first_sale_timestamp,
         fs.first_checkout_id,
-        first_l.lottery_name first_lottery,
-        first_l.lottery_type_name first_lottery_type,
+        first_l.lottery first_lottery,
+        first_l.lottery_type first_lottery_type,
         first_d.draw_no first_draw_no,
         first_d.draw_prize_pool first_prize_pool,
-        first_go.game_offer_name as first_game_offer,
+        first_go.game_offer as first_game_offer,
         first_channel,
         first_checkout_sale_data
     from first_sale fs
