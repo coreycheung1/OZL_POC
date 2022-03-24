@@ -26,7 +26,7 @@ final as (
         c.checkout_id,
         c.checkout_timestamp,
         c.customer_id,
-        ch.channel_name as channel,
+        ch.channel,
         c.checkout_sale_data       
     from checkout_cleaned c 
     join channel ch on c.channel_id = ch.channel_id

@@ -31,7 +31,7 @@ final as (
         at.transaction_reason,
         at.transaction_amount,
         at.account_transaction_type_id,
-        att.account_transaction_type_name as account_transaction_type
+        att.account_transaction_type
     from account_transaction_cleaned at
     join account_transaction_type att on at.account_transaction_type_id = att.account_transaction_type_id
 )

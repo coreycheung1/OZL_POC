@@ -2,9 +2,9 @@ with lottery as (
 
     select 
         lottery_id,
-        lottery_name,
+        lottery,
         lottery_type_id,
-        lottery_type_name
+        lottery_type
     from {{ ref('stg_lottery_ozl') }}
 )
 
