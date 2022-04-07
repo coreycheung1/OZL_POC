@@ -35,8 +35,21 @@ models:
   ozl_poc:
     1_staging:
       +materialized: view
+      ozl:
+        +schema: ozl_stg
+      ma:
+        +schema: ma_stg
     2_core:
       +materialized: view
-    3_marts:
+      ozl:
+        +schema: ozl_core
+      ma:
+        +schema: ma_core
+    3_mart:
       +materialized: table
+      general:
+        ozl:
+          +schema: ozl_mart
+        ma:
+          +schema: ma_mart
       
