@@ -1,8 +1,8 @@
-{%- macro stg_customer(pbj) -%}
+{%- macro stg_customer(pbj, num_nodes) -%}
     
 with customer_unioned as (
 
-    {{ union_node_sources(pbj, 4, 'customer')}}
+    {{ union_node_sources(pbj, num_nodes, 'customer')}}
 ),
 
 customer_cleaned as (

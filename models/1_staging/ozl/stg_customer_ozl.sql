@@ -1,1 +1,1 @@
-{{stg_customer(pbj='ozl')}}
+{{ stg_customer(pbj='ozl', num_nodes=4) }}
